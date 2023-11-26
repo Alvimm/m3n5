@@ -26,8 +26,8 @@ public class CadastroClient {
             Socket socket = new Socket("localhost", 4321);
             ObjectOutputStream saida = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
-            //ThreadClient threadClient = new ThreadClient(in);
-          //  threadClient.start();
+            ThreadClient threadClient = new ThreadClient(in);
+          threadClient.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("------------------------------");
             System.out.print("Login: ");
@@ -41,13 +41,6 @@ public class CadastroClient {
 
             saida.writeObject("L");
             saida.flush();
-
-        //    List<Object> entities = (List<Object>) entrada.readObject();
-        //    for (Object entity : entities) {
-        //        String nome = (String) entity.getClass().getMethod("getNome").invoke(entity);
-      //          System.out.println("Nome: " + nome);
-      //      }
-
             saida.close();
             entrada.close();
             socket.close();
